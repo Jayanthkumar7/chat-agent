@@ -1,0 +1,193 @@
+# TheTechX — Knowledge Base
+
+---
+
+## What is TheTechX?
+
+TheTechX is an India-based tech organisation founded by **Teja Vardhan Reddy Chennuru**. It operates across three areas, in order of its primary identity:
+
+1. **Media & Knowledge** (primary brand) — Verified tech & AI news, curated tools, and engineering playbooks. The philosophy is honest analysis over hype: "No clickbait. No reposts. No hype."
+2. **Services** (secondary brand) — "We also build." AI automation and custom software development for startups and enterprises, available on direct request.
+3. **Education** (tertiary brand) — Cohort-based live training programs for developers, focused on Agentic AI Engineering (see curriculum.html on the website).
+
+TheTechX operates as a small, focused team based in Hyderabad, India.
+
+**Website:** https://www.thetechx.in
+**Contact Email:** thetechx.in@gmail.com (replies within 1 day)
+**Contact Phone:** 8712365756
+**LinkedIn:** https://www.linkedin.com/company/the-techx/
+**YouTube:** https://www.youtube.com/@thetechx_in
+**Instagram:** @thetechx.in
+**Spotify Podcast:** https://open.spotify.com/show/033miXhzdYNZdlrDyWPIVi
+
+---
+
+## Cohort Program: Agentic AI Engineering — Zero to Pro
+
+TheTechX's cohort-based live training program for developers who want to build production-grade AI agents.
+
+### Instructor
+
+**Teja Vardhan Reddy Chennuru** — founder of TheTechX, instructor and program lead for all cohorts.
+
+### Overview
+
+- **Program Name:** Agentic AI Engineering: Zero to Pro
+- **Duration:** 10 weeks
+- **Sessions:** 50 live sessions, 1 hour per day
+- **Format:** Live-only (no recordings or replays — attendance is mandatory)
+- **Cohort Size:** Maximum 10 engineers per cohort (deliberately small for quality)
+- **Frequency:** Once every 3 months, with selective intake
+- **Target:** Developers comfortable with programming and APIs, new to agentic AI
+
+### Who Is It For?
+
+The program is designed for:
+- Developers with general programming experience (any language) and familiarity with APIs
+- People who are new to agentic AI specifically
+- Prior LLM/prompting exposure is assumed
+- A **Week 0 primer** is available for anyone who needs a foundation before starting
+
+It is NOT a beginner coding bootcamp. You are expected to already write code.
+
+### Curriculum
+
+The program is divided into **4 Acts**:
+
+#### Act I: Foundations (Weeks 1–3)
+- How agent loops and tool-calling mechanics work
+- Memory systems and context engineering
+- Planning, reasoning, and self-correction approaches
+
+#### Act II: Building Real Systems (Weeks 4–5)
+- Tool design, environments, and human-in-the-loop gates
+- Multi-agent orchestration and coordination patterns
+
+#### Act III: Production-Grade (Weeks 6–8)
+- Week 6: Frameworks — comparative analysis of LangGraph, CrewAI, Claude Agent SDK, and MCP server architecture
+- Evaluation, observability, and failure analysis
+- Production engineering and problem-framing
+
+#### Act IV: Mastery & Capstone (Weeks 9–10)
+- Frontier topics and capstone proposals
+- Capstone sprint and Demo Day — present your agent system to the cohort with a written retrospective
+
+### Projects & Deliverables
+
+- **9 shipped projects** across the 10 weeks (one per week approximately)
+- **Capstone agent system** — a full production-grade AI agent built and presented at Demo Day
+- **Written retrospective** submitted alongside the capstone
+
+### Enrollment Process
+
+1. Fill in a **2-minute online application form** (name, email, background, motivation)
+2. TheTechX responds within **48 hours**
+3. Intake is selective — cohort size is capped at 10
+
+> **Note:** Pricing is not publicly listed on the website. Contact thetechx.in@gmail.com or call 8712365756 or apply directly to get pricing details.
+
+The most recent cohort (Cohort 1) had an **application deadline of Wednesday, 17 June at 12:00 PM IST**.
+
+---
+
+## Services
+
+TheTechX also works with startups and enterprises as a services company:
+
+### 1. AI Automation
+- Custom AI workflows and agents
+- AI voice synthesis and 24/7 appointment scheduling
+- n8n workflow automation and integrations
+- Claim: saves clients 20+ hours of manual labor per week and automates up to 80% of customer interactions
+
+### 2. Custom Tech Builds
+- Web apps, SaaS platforms, and internal tools
+- Built with React / Next.js
+- AI/ML application development (OpenAI, ElevenLabs integrations)
+- Content and marketing automation with video generation
+
+### 3. Strategy & Consulting
+- AI adoption advice for teams
+- Tech roadmaps and architecture planning
+
+**Trusted by:** Organizations including Student Tribe and Capgemini (per LinkedIn).
+
+---
+
+## Products
+
+### Claude Code Playbook
+A comprehensive reference guide for agent engineering using Claude Code:
+- 14 sections covering everything from install to autonomous agent teams
+- 9 ready-to-use agent configurations
+- 5 parallel processing patterns
+- Claims approximately 92% token savings through optimization techniques
+- Targets: software engineers and development teams building production-grade autonomous agents
+- Covers beginner to pro complexity levels; stack-agnostic
+
+---
+
+## Community
+
+TheTechX runs an active community for builders and developers, especially in Hyderabad.
+
+### WhatsApp News Channel
+- Daily curated tech and AI news
+- Sourced from official blogs, research papers, and verified reporting
+- No clickbait or hype
+- 52+ followers
+
+### WhatsApp Community Group
+- Focused on the Hyderabad builder scene
+- Hosts **meetups** and **hackathons**
+- For founders, developers, and curious minds
+- Link: https://chat.whatsapp.com/BiGfJ06X2n8JRf0Mw2YN8e
+
+### Other Channels
+- **LinkedIn:** Regular updates on cohort announcements and tech content
+- **YouTube:** https://www.youtube.com/@thetechx_in
+- **Instagram:** @thetechx.in
+- **Spotify Podcast:** Tech discussions and AI content
+
+---
+
+## Frequently Asked Questions
+
+**Q: What is TheTechX?**
+A: TheTechX is an Indian tech organisation primarily known for verified tech & AI news, curated tools, and engineering playbooks. It also offers paid services (AI automation, custom builds, consulting) on request, and runs cohort-based live programs for developers — most notably "Agentic AI Engineering: Zero to Pro." Based in Hyderabad, founded by Teja Vardhan Reddy Chennuru.
+
+**Q: What program does TheTechX offer?**
+A: "Agentic AI Engineering: Zero to Pro" — a 10-week live cohort for developers wanting to build production-grade AI agents. 50 live sessions, 1 hour/day, max 10 engineers per cohort.
+
+**Q: How long is the program?**
+A: 10 weeks, with 50 live sessions of 1 hour each (Monday to Friday, roughly).
+
+**Q: How many students per cohort?**
+A: Maximum 10 engineers per cohort. Intake is selective and cohorts run once every 3 months.
+
+**Q: Are there recordings if I miss a session?**
+A: No. The program is live-only with no recordings or replays. Full attendance is expected.
+
+**Q: Who is this program for?**
+A: Developers who already write code and have used APIs, but are new to building AI agents. Prior LLM/prompting experience is assumed.
+
+**Q: How do I enroll?**
+A: Fill in the 2-minute application form on thetechx.in. TheTechX responds within 48 hours.
+
+**Q: What is the fee / pricing?**
+A: Pricing is not publicly listed. For the next cohort date and pricing, contact thetechx.in@gmail.com or call 8712365756.
+
+**Q: What will I build during the program?**
+A: 9 real shipped projects across 10 weeks, plus a capstone agent system that you present at Demo Day with a written retrospective.
+
+**Q: Where is TheTechX based?**
+A: The community and team are based in Hyderabad, India, but the cohort program is online (live sessions, location-independent).
+
+**Q: How can I contact TheTechX?**
+A: Email thetechx.in@gmail.com or call at 8712365756 — they reply within 1 day. You can also reach them through the contact form on thetechx.in.
+
+**Q: Does TheTechX also do consulting or development work?**
+A: Yes. TheTechX offers AI automation, custom web/SaaS development, and strategy consulting for startups and enterprises alongside its educational programs.
+
+**Q: Is there a community I can join?**
+A: Yes — a WhatsApp community group for the Hyderabad builder scene (meetups, hackathons), and a WhatsApp news channel for daily tech/AI updates. Links are on thetechx.in.
