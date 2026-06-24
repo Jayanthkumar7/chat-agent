@@ -1,6 +1,11 @@
 import { tool } from '@langchain/core/tools';
 import { z } from 'zod';
+import { Pinecone } from '@pinecone-database/pinecone';
+import { PineconeStore } from '@langchain/pinecone';
+import { GoogleGenerativeAIEmbeddings } from '@langchain/google-genai';
+import dotenv from "dotenv";
 
+dotenv.config();
 // ══════════════════════════════════════════════════════════════════
 //  PINECONE SEARCH TOOL — YOUR TASK
 // ══════════════════════════════════════════════════════════════════
@@ -26,28 +31,21 @@ import { z } from 'zod';
 
 export const pineconeSearchTool = tool(
   async ({ query }: { query: string }) => {
-    // TODO: Implement Pinecone similarity search
-    //
-    // import { Pinecone } from '@pinecone-database/pinecone';
-    // import { PineconeStore } from '@langchain/pinecone';
-    // import { GoogleGenerativeAIEmbeddings } from '@langchain/google-genai';
-    //
-    // const embeddings = new GoogleGenerativeAIEmbeddings({
-    //   model: 'text-embedding-004',
-    //   apiKey: process.env.GOOGLE_API_KEY!,
-    // });
-    //
-    // const pinecone = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
-    // const index = pinecone.Index(process.env.PINECONE_INDEX_NAME!);
-    //
-    // const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
-    //   pineconeIndex: index,
-    // });
-    //
-    // const results = await vectorStore.similaritySearch(query, 4);
-    // return results.map((r) => r.pageContent).join('\n\n');
+    const embeddings = new GoogleGenerativeAIEmbeddings({
+      apiKey: GOOGLE_API_KEY,
+      model: "gemini-embedding-001",
+    });
 
-    throw new Error('pineconeSearchTool not implemented yet.');
+    const pinecone = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
+    const index = pinecone.Index(process.env.PINECONE_INDEX_NAME!);
+
+    const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
+      pineconeIndex: index,
+    });
+
+    const results = await vectorStore.similaritySearch(query, 4);
+    return results.map((r) => r.pageContent).join('\n\n');
+
   },
   {
     name: 'pinecone_search',

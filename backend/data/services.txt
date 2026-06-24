@@ -1,0 +1,36 @@
+## Services
+
+TheTechX also works with startups and enterprises as a services company:
+
+### 1. AI Automation
+- Custom AI workflows and agents
+- AI voice synthesis and 24/7 appointment scheduling
+- n8n workflow automation and integrations
+- Claim: saves clients 20+ hours of manual labor per week and automates up to 80% of customer interactions
+
+### 2. Custom Tech Builds
+- Web apps, SaaS platforms, and internal tools
+- Built with React / Next.js
+- AI/ML application development (OpenAI, ElevenLabs integrations)
+- Content and marketing automation with video generation
+
+### 3. Strategy & Consulting
+- AI adoption advice for teams
+- Tech roadmaps and architecture planning
+
+**Trusted by:** Organizations including Student Tribe and Capgemini (per LinkedIn).
+
+---
+
+## Products
+
+### Claude Code Playbook
+A comprehensive reference guide for agent engineering using Claude Code:
+- 14 sections covering everything from install to autonomous agent teams
+- 9 ready-to-use agent configurations
+- 5 parallel processing patterns
+- Claims approximately 92% token savings through optimization techniques
+- Targets: software engineers and development teams building production-grade autonomous agents
+- Covers beginner to pro complexity levels; stack-agnostic
+
+---

@@ -1,37 +1,47 @@
 import { tool } from '@langchain/core/tools';
 import { z } from 'zod';
+import { Client } from '@notionhq/client';
 
 // ══════════════════════════════════════════════════════════════════
-//  NOTION MEMORY TOOLS — YOUR TASK
+//  NOTION MEMORY TOOLS
 // ══════════════════════════════════════════════════════════════════
 //
-//  These two tools save and retrieve conversation history from Notion.
-//  Each user is uniquely identified by their mobile number.
+//  Actual Notion Database Schema (as inspected):
+//  ┌──────────────┬──────────────┬────────────────────────────────┐
+//  │ Column       │ Type         │ Notes                          │
+//  ├──────────────┼──────────────┼────────────────────────────────┤
+//  │ Name         │ title        │ User's name                    │
+//  │ mobile       │ phone_number │ Unique user identifier         │
+//  │ message      │ rich_text    │ Single message content per row │
+//  │ role         │ rich_text    │ "user" or "assistant"          │
+//  └──────────────┴──────────────┴────────────────────────────────┘
 //
-//  Notion Database Schema (set this up in Notion first — see guide.md):
-//  ┌─────────────────┬─────────────┬──────────────────────────────────────────┐
-//  │ Column          │ Type        │ Notes                                    │
-//  ├─────────────────┼─────────────┼──────────────────────────────────────────┤
-//  │ Name            │ Title       │ User's name (default title column)       │
-//  │ Mobile          │ Text        │ Used as unique identifier                │
-//  │ Conversation    │ Text        │ JSON array of { role, content, time }    │
-//  │ Last Updated    │ Date        │ Updated on every new message             │
-//  └─────────────────┴─────────────┴──────────────────────────────────────────┘
-//
-//  Implementation guide:
-//  1. Import Client from @notionhq/client
-//  2. Initialize: const notion = new Client({ auth: process.env.NOTION_API_KEY })
-//  3. For saveToNotion:
-//     a. Query the database filtering by Mobile === mobile
-//     b. If a page exists → append the new message to Conversation (JSON)
-//     c. If no page exists → create a new database entry
-//  4. For getFromNotion:
-//     a. Query the database filtering by Mobile === mobile
-//     b. Return the Conversation property as parsed JSON
-//
-//  Docs: https://developers.notion.com/docs/working-with-databases
-//  SDK:  https://github.com/makenotion/notion-sdk-js
+//  Strategy: One row per message. Retrieval queries all rows for
+//  a given mobile number and returns the full conversation history.
 // ══════════════════════════════════════════════════════════════════
+
+// Helper to initialize Notion client using native fetch (fixes node-fetch v2 stream bug on Node.js v24+)
+const getNotionClient = () => {
+  const apiKey = process.env.NOTION_API_KEY;
+  const databaseId = process.env.NOTION_DATABASE_ID;
+
+  if (!apiKey || !databaseId) {
+    throw new Error(
+      'NOTION_API_KEY and NOTION_DATABASE_ID must be set in environment variables.'
+    );
+  }
+
+  return {
+    notion: new Client({
+      auth: apiKey,
+      fetch: globalThis.fetch,
+    }),
+    databaseId,
+  };
+};
+
+// ── Save Tool ──────────────────────────────────────────────────────────────────
+// Creates one new row per message in the Notion database.
 
 export const saveToNotionTool = tool(
   async ({
@@ -45,26 +55,50 @@ export const saveToNotionTool = tool(
     message: string;
     role: 'user' | 'assistant';
   }) => {
-    // TODO: Implement save to Notion
-    //
-    // const { Client } = require('@notionhq/client');
-    // const notion = new Client({ auth: process.env.NOTION_API_KEY });
-    //
-    // Step 1: Check if a record already exists for this mobile
-    // const response = await notion.databases.query({
-    //   database_id: process.env.NOTION_DATABASE_ID!,
-    //   filter: { property: 'Mobile', rich_text: { equals: mobile } },
-    // });
-    //
-    // Step 2: Prepare the new message entry
-    // const newEntry = { role, content: message, time: new Date().toISOString() };
-    //
-    // Step 3: If exists → update; if not → create
-    // ...
-    //
-    // return 'Saved to Notion';
+    const { notion, databaseId } = getNotionClient();
 
-    throw new Error('saveToNotionTool not implemented yet.');
+    // Each message is stored as a separate row
+    await notion.pages.create({
+      parent: { database_id: databaseId },
+      properties: {
+        // "Name" is the title column — store user's name
+        Name: {
+          title: [
+            {
+              text: {
+                content: name,
+              },
+            },
+          ],
+        },
+        // "mobile" is a phone_number column
+        mobile: {
+          phone_number: mobile,
+        },
+        // "message" is a rich_text column — store message content
+        message: {
+          rich_text: [
+            {
+              text: {
+                content: message,
+              },
+            },
+          ],
+        },
+        // "role" is a rich_text column — store "user" or "assistant"
+        role: {
+          rich_text: [
+            {
+              text: {
+                content: role,
+              },
+            },
+          ],
+        },
+      },
+    });
+
+    return `Saved to Notion: [${role}] message for ${name} (${mobile})`;
   },
   {
     name: 'save_to_notion',
@@ -78,29 +112,43 @@ export const saveToNotionTool = tool(
         .enum(['user', 'assistant'])
         .describe('Whether this is a user message or agent response'),
     }),
-  }
+  } as any
 );
+
+// ── Get Tool ───────────────────────────────────────────────────────────────────
+// Retrieves all message rows for a given mobile number, returning conversation history.
 
 export const getFromNotionTool = tool(
   async ({ mobile }: { mobile: string }) => {
-    // TODO: Implement get from Notion
-    //
-    // const { Client } = require('@notionhq/client');
-    // const notion = new Client({ auth: process.env.NOTION_API_KEY });
-    //
-    // const response = await notion.databases.query({
-    //   database_id: process.env.NOTION_DATABASE_ID!,
-    //   filter: { property: 'Mobile', rich_text: { equals: mobile } },
-    // });
-    //
-    // if (response.results.length === 0) return 'No previous conversation found.';
-    //
-    // const page = response.results[0] as any;
-    // const conversationText = page.properties.Conversation.rich_text[0]?.plain_text || '[]';
-    // const history = JSON.parse(conversationText);
-    // return JSON.stringify(history);
+    const { notion, databaseId } = getNotionClient();
 
-    throw new Error('getFromNotionTool not implemented yet.');
+    // Query all rows matching this mobile number
+    const response = await notion.databases.query({
+      database_id: databaseId,
+      filter: {
+        property: 'mobile',
+        phone_number: {
+          equals: mobile,
+        },
+      },
+    });
+
+    if (response.results.length === 0) {
+      return 'No previous conversation found.';
+    }
+
+    // Map each row back to a message entry
+    const history = response.results.map((page: any) => ({
+      name: page.properties.Name?.title?.[0]?.plain_text || 'Unknown',
+      role: page.properties.role?.rich_text?.[0]?.plain_text || 'unknown',
+      content: page.properties.message?.rich_text?.[0]?.plain_text || '',
+      time: page.created_time,
+    }));
+
+    // Sort chronologically by creation time
+    history.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+
+    return JSON.stringify(history);
   },
   {
     name: 'get_from_notion',
@@ -109,5 +157,5 @@ export const getFromNotionTool = tool(
     schema: z.object({
       mobile: z.string().describe("The user's mobile number"),
     }),
-  }
+  } as any
 );

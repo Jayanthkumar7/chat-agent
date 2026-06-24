@@ -1,0 +1,67 @@
+## Cohort Program: Agentic AI Engineering — Zero to Pro
+
+TheTechX's cohort-based live training program for developers who want to build production-grade AI agents.
+
+### Instructor
+
+**Teja Vardhan Reddy Chennuru** — founder of TheTechX, instructor and program lead for all cohorts.
+
+### Overview
+
+- **Program Name:** Agentic AI Engineering: Zero to Pro
+- **Duration:** 10 weeks
+- **Sessions:** 50 live sessions, 1 hour per day
+- **Format:** Live-only (no recordings or replays — attendance is mandatory)
+- **Cohort Size:** Maximum 10 engineers per cohort (deliberately small for quality)
+- **Frequency:** Once every 3 months, with selective intake
+- **Target:** Developers comfortable with programming and APIs, new to agentic AI
+
+### Who Is It For?
+
+The program is designed for:
+- Developers with general programming experience (any language) and familiarity with APIs
+- People who are new to agentic AI specifically
+- Prior LLM/prompting exposure is assumed
+- A **Week 0 primer** is available for anyone who needs a foundation before starting
+
+It is NOT a beginner coding bootcamp. You are expected to already write code.
+
+### Curriculum
+
+The program is divided into **4 Acts**:
+
+#### Act I: Foundations (Weeks 1–3)
+- How agent loops and tool-calling mechanics work
+- Memory systems and context engineering
+- Planning, reasoning, and self-correction approaches
+
+#### Act II: Building Real Systems (Weeks 4–5)
+- Tool design, environments, and human-in-the-loop gates
+- Multi-agent orchestration and coordination patterns
+
+#### Act III: Production-Grade (Weeks 6–8)
+- Week 6: Frameworks — comparative analysis of LangGraph, CrewAI, Claude Agent SDK, and MCP server architecture
+- Evaluation, observability, and failure analysis
+- Production engineering and problem-framing
+
+#### Act IV: Mastery & Capstone (Weeks 9–10)
+- Frontier topics and capstone proposals
+- Capstone sprint and Demo Day — present your agent system to the cohort with a written retrospective
+
+### Projects & Deliverables
+
+- **9 shipped projects** across the 10 weeks (one per week approximately)
+- **Capstone agent system** — a full production-grade AI agent built and presented at Demo Day
+- **Written retrospective** submitted alongside the capstone
+
+### Enrollment Process
+
+1. Fill in a **2-minute online application form** (name, email, background, motivation)
+2. TheTechX responds within **48 hours**
+3. Intake is selective — cohort size is capped at 10
+
+> **Note:** Pricing is not publicly listed on the website. Contact thetechx.in@gmail.com or call 8712365756 or apply directly to get pricing details.
+
+The most recent cohort (Cohort 1) had an **application deadline of Wednesday, 17 June at 12:00 PM IST**.
+
+---

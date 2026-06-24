@@ -1,0 +1,64 @@
+## Community
+
+TheTechX runs an active community for builders and developers, especially in Hyderabad.
+
+### WhatsApp News Channel
+- Daily curated tech and AI news
+- Sourced from official blogs, research papers, and verified reporting
+- No clickbait or hype
+- 52+ followers
+
+### WhatsApp Community Group
+- Focused on the Hyderabad builder scene
+- Hosts **meetups** and **hackathons**
+- For founders, developers, and curious minds
+- Link: https://chat.whatsapp.com/BiGfJ06X2n8JRf0Mw2YN8e
+
+### Other Channels
+- **LinkedIn:** Regular updates on cohort announcements and tech content
+- **YouTube:** https://www.youtube.com/@thetechx_in
+- **Instagram:** @thetechx.in
+- **Spotify Podcast:** Tech discussions and AI content
+
+---
+
+## Frequently Asked Questions
+
+**Q: What is TheTechX?**
+A: TheTechX is an Indian tech organisation primarily known for verified tech & AI news, curated tools, and engineering playbooks. It also offers paid services (AI automation, custom builds, consulting) on request, and runs cohort-based live programs for developers — most notably "Agentic AI Engineering: Zero to Pro." Based in Hyderabad, founded by Teja Vardhan Reddy Chennuru.
+
+**Q: What program does TheTechX offer?**
+A: "Agentic AI Engineering: Zero to Pro" — a 10-week live cohort for developers wanting to build production-grade AI agents. 50 live sessions, 1 hour/day, max 10 engineers per cohort.
+
+**Q: How long is the program?**
+A: 10 weeks, with 50 live sessions of 1 hour each (Monday to Friday, roughly).
+
+**Q: How many students per cohort?**
+A: Maximum 10 engineers per cohort. Intake is selective and cohorts run once every 3 months.
+
+**Q: Are there recordings if I miss a session?**
+A: No. The program is live-only with no recordings or replays. Full attendance is expected.
+
+**Q: Who is this program for?**
+A: Developers who already write code and have used APIs, but are new to building AI agents. Prior LLM/prompting experience is assumed.
+
+**Q: How do I enroll?**
+A: Fill in the 2-minute application form on thetechx.in. TheTechX responds within 48 hours.
+
+**Q: What is the fee / pricing?**
+A: Pricing is not publicly listed. For the next cohort date and pricing, contact thetechx.in@gmail.com or call 8712365756.
+
+**Q: What will I build during the program?**
+A: 9 real shipped projects across 10 weeks, plus a capstone agent system that you present at Demo Day with a written retrospective.
+
+**Q: Where is TheTechX based?**
+A: The community and team are based in Hyderabad, India, but the cohort program is online (live sessions, location-independent).
+
+**Q: How can I contact TheTechX?**
+A: Email thetechx.in@gmail.com or call at 8712365756 — they reply within 1 day. You can also reach them through the contact form on thetechx.in.
+
+**Q: Does TheTechX also do consulting or development work?**
+A: Yes. TheTechX offers AI automation, custom web/SaaS development, and strategy consulting for startups and enterprises alongside its educational programs.
+
+**Q: Is there a community I can join?**
+A: Yes — a WhatsApp community group for the Hyderabad builder scene (meetups, hackathons), and a WhatsApp news channel for daily tech/AI updates. Links are on thetechx.in.

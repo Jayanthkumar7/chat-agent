@@ -1,6 +1,9 @@
 import { tool } from '@langchain/core/tools';
 import { z } from 'zod';
+import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
+import dotenv from "dotenv";
 
+dotenv.config();
 // ══════════════════════════════════════════════════════════════════
 //  TAVILY SEARCH TOOL — YOUR TASK
 // ══════════════════════════════════════════════════════════════════
@@ -21,23 +24,22 @@ import { z } from 'zod';
 //  API:  https://docs.tavily.com
 // ══════════════════════════════════════════════════════════════════
 
-export const tavilySearchTool = tool(
-  async ({ query }: { query: string }) => {
-    // TODO: Implement Tavily search
-    //
-    // import { TavilySearchResults } from '@langchain/community/tools/tavily_search';
-    // const search = new TavilySearchResults({ maxResults: 5 });
-    // const results = await search.invoke(query);
-    // return results;
 
-    throw new Error('tavilySearchTool not implemented yet.');
+const search = new TavilySearchResults({
+  maxResults: 5,
+});
+
+export const tavilySearchTool = tool(
+  async ({ query }) => {
+    const results = await search.invoke(query);
+    return JSON.stringify(results, null, 2);
   },
   {
-    name: 'tavily_search',
+    name: "tavily_search",
     description:
-      'Search the web for recent tech news, AI updates, trending topics, and career/role research. Use this for any time-sensitive or current information.',
+      "Search the web for recent tech news, AI updates, trending topics, career information, programming concepts, and other real-time information.",
     schema: z.object({
-      query: z.string().describe('The search query'),
+      query: z.string().describe("The search query"),
     }),
   }
 );
