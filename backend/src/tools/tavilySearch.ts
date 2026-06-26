@@ -1,11 +1,11 @@
 import { tool } from '@langchain/core/tools';
 import { z } from 'zod';
-import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
 import dotenv from "dotenv";
 
 dotenv.config();
+
 // ══════════════════════════════════════════════════════════════════
-//  TAVILY SEARCH TOOL — YOUR TASK
+//  TAVILY SEARCH TOOL
 // ══════════════════════════════════════════════════════════════════
 //
 //  Use this tool when the user asks about:
@@ -14,25 +14,53 @@ dotenv.config();
 //  - Career/role research ("what is FDE role, give roadmap")
 //  - Anything that needs current, real-world information
 //
-//  Implementation steps:
-//  1. Import TavilySearchResults from @langchain/community/tools/tavily_search
-//  2. Initialize with { maxResults: 5 }
-//  3. The TAVILY_API_KEY env var is picked up automatically
-//  4. Call search.invoke(query) and return the results
-//
-//  Docs: https://js.langchain.com/docs/integrations/tools/tavily_search
-//  API:  https://docs.tavily.com
 // ══════════════════════════════════════════════════════════════════
 
-
-const search = new TavilySearchResults({
-  maxResults: 5,
-});
-
 export const tavilySearchTool = tool(
-  async ({ query }) => {
-    const results = await search.invoke(query);
-    return JSON.stringify(results, null, 2);
+  async ({ query }: { query: string }) => {
+    const apiKey = process.env.TAVILY_API_KEY;
+    if (!apiKey) {
+      throw new Error("TAVILY_API_KEY is not set.");
+    }
+    try {
+      const response = await fetch("https://api.tavily.com/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          api_key: apiKey,
+          query,
+          max_results: 5,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Tavily search failed with status ${response.status}`);
+      }
+
+      interface TavilyResult {
+        title: string;
+        url: string;
+        content: string;
+        score: number;
+      }
+
+      interface TavilyResponse {
+        results?: TavilyResult[];
+      }
+
+      const data = (await response.json()) as TavilyResponse;
+      const results = data.results || [];
+      return JSON.stringify(
+        results.map((r) => ({ url: r.url, content: r.content })),
+        null,
+        2
+      );
+    } catch (err) {
+      console.error("[Tavily] Search error:", err);
+      return "Tavily search is temporarily unavailable. Proceeding without search results.";
+    }
   },
   {
     name: "tavily_search",
@@ -43,3 +71,4 @@ export const tavilySearchTool = tool(
     }),
   }
 );
+

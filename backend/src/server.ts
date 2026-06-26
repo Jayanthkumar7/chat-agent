@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+import { runAgent } from './agent';
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -19,22 +21,13 @@ app.post('/api/chat', async (req, res) => {
     return res.status(400).json({ error: 'message (string) is required' });
   }
 
-  // TODO: Uncomment and use once you implement the agent
-  // import { runAgent } from './agent';
-  //
-  // try {
-  //   const result = await runAgent(message, agentState || {});
-  //   return res.json({ response: result.response, agentState: result.state });
-  // } catch (err) {
-  //   console.error('Agent error:', err);
-  //   return res.status(500).json({ error: 'Agent failed to respond' });
-  // }
-
-  return res.json({
-    response:
-      'Backend is running! Agent not implemented yet — see guide.md to get started.',
-    agentState: { sessionId: sessionId || 'placeholder' },
-  });
+  try {
+    const result = await runAgent(message, agentState || {});
+    return res.json({ response: result.response, agentState: result.state });
+  } catch (err) {
+    console.error('Agent error:', err);
+    return res.status(500).json({ error: 'Agent failed to respond' });
+  }
 });
 
 const PORT = process.env.PORT || 3001;

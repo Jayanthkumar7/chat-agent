@@ -112,7 +112,7 @@ export const saveToNotionTool = tool(
         .enum(['user', 'assistant'])
         .describe('Whether this is a user message or agent response'),
     }),
-  } as any
+  }
 );
 
 // ── Get Tool ───────────────────────────────────────────────────────────────────
@@ -157,5 +157,5 @@ export const getFromNotionTool = tool(
     schema: z.object({
       mobile: z.string().describe("The user's mobile number"),
     }),
-  } as any
+  }
 );

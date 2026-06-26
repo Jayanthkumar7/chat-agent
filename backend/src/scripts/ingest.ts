@@ -1,20 +1,13 @@
 import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { PineconeStore } from "@langchain/pinecone";
 import { Pinecone } from "@pinecone-database/pinecone";
 
 dotenv.config();
-
-// -----------------------------------------------------------------------------
-// Support __dirname in ES Modules
-// -----------------------------------------------------------------------------
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // -----------------------------------------------------------------------------
 // Ingest Script
@@ -113,7 +106,6 @@ async function ingest() {
     const embeddings = new GoogleGenerativeAIEmbeddings({
       apiKey: GOOGLE_API_KEY,
       model: "gemini-embedding-001",
-      dimensions: 512,
     });
 
     // -------------------------------------------------------------------------

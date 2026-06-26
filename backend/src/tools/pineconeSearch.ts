@@ -32,7 +32,7 @@ dotenv.config();
 export const pineconeSearchTool = tool(
   async ({ query }: { query: string }) => {
     const embeddings = new GoogleGenerativeAIEmbeddings({
-      apiKey: GOOGLE_API_KEY,
+      apiKey: process.env.GOOGLE_API_KEY,
       model: "gemini-embedding-001",
     });
 
