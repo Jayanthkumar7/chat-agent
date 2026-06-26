@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
+import { ChatOpenAI } from '@langchain/openai';
 import { createAgent } from "langchain";
 import { HumanMessage, AIMessage } from '@langchain/core/messages';
 
@@ -17,8 +17,8 @@ import { z } from "zod";
 // ──────────────────────────────────────────────────────────────────────────────
 
 const UserInfoSchema = z.object({
-  name: z.string().optional(),
-  mobile: z.string().optional(),
+  name: z.string().nullable().optional(),
+  mobile: z.string().nullable().optional(),
 });
 
 
@@ -41,16 +41,27 @@ function normalizeIndianMobile(mobile: string): string {
 // Step 2: Initialize LLM — created once at module level for performance
 // ──────────────────────────────────────────────────────────────────────────────
 
-const extractionLLM = new ChatGoogleGenerativeAI({
-  apiKey: process.env.GOOGLE_API_KEY!,
-  model: "gemini-3-flash",
+const extractionLLM = new ChatOpenAI({
+  apiKey: process.env.NVIDIA_API_KEY,
+  configuration: {
+    baseURL: "https://integrate.api.nvidia.com/v1",
+  },
+  model: "mistralai/mistral-medium-3.5-128b",
   temperature: 0,
 });
 
-const agentLLM = new ChatGoogleGenerativeAI({
-  apiKey: process.env.GOOGLE_API_KEY!,
-  model: "gemini-3-flash",
-  temperature: 0,
+const agentLLM = new ChatOpenAI({
+  apiKey: process.env.NVIDIA_API_KEY,
+  configuration: {
+    baseURL: "https://integrate.api.nvidia.com/v1",
+  },
+  model: "mistralai/mistral-medium-3.5-128b",
+  temperature: 0.70,
+  topP: 1.00,
+  maxTokens: 16384,
+  modelKwargs: {
+    reasoning_effort: "high",
+  },
 });
 
 const userInfoExtractor = extractionLLM.withStructuredOutput(UserInfoSchema);
@@ -62,7 +73,6 @@ const userInfoExtractor = extractionLLM.withStructuredOutput(UserInfoSchema);
 const tools = [
   pineconeSearchTool, // TheTechX knowledge base (courses, fees, cohorts)
   tavilySearchTool,   // Real-time tech news, AI trends, career research
-  saveToNotionTool,   // Persist every message exchange
   getFromNotionTool,  // Retrieve past conversation history
 ];
 
@@ -80,17 +90,18 @@ CRITICAL RULE — User Identity:
 - Read the name and mobile number from this context block.
 - Use them whenever a tool requires them.
 - Never ask the user for their name or mobile again once they have been collected..
+- dont reply to the questions if prmompted other than tech news or thetechX related questions
+- reply "I can only answer questions related to tech news or thetechX related questions" if the user asks any other question 
 
 Tool Routing Rules (follow these strictly):
 - If the user asks about TheTechX specifically (courses, fees, cohort details, programs, instructors, schedule) → call pinecone_search
 - If the user asks about tech news, AI trends, career paths, programming concepts, or anything requiring real-time/current info → call tavily_search
 - If the user asks "what did we talk about", "recall our conversation", "what was discussed earlier" or anything about past history → call get_from_notion first, then summarise the results
-- After every response where you answer a question, call save_to_notion to persist BOTH the user message (role: user) and your response (role: assistant)
 
 Tone & Behaviour:
 - Be warm, encouraging, and concise
 - When using tool results, synthesize them into a clear, helpful answer — do not dump raw tool output
-- If you are unsure which tool to use, default to pinecone_search for TheTechX questions and tavily_search for everything else`;
+- If you are unsure which tool to use, default to pinecone_search for TheTechX questions and tavily_search for everything reagarding any tech news else`;
 
 
 
@@ -216,8 +227,6 @@ export async function runAgent(
       response: greeting,
       state: updatedState,
     };
-
-    return { response: greeting, state: updatedState };
   }
 
   // ──────────────────────────────────────────────────────────────────────────
